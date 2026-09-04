@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Nav Section */
+nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+nav a {
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-start; 
+  gap: 12px;
+  padding: 24px;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none; /* Removes the underline */
+  color: #1d2d5c; /* Your dark blue colour */
+}
+
+nav a:hover {
+  background-color: #f5e6c8;
+  border-radius: 8px;
+}
+
+nav a:focus-visible {
+  outline: 3px solid #1d2d5c;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+main h1 {
+  text-align: center;
+}
+
+main p {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+body {
+  margin: 0;
+  background-color: aqua;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Dots */
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.dot {
+  width: 100%;
+  aspect-ratio: 1;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background-color: bisque;
+  border: none;
+  cursor: pointer;
+}
+
+.dot:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(245, 230, 200, 0.8);
+}
+
+.dot:focus-visible {
+  outline: 3px solid #1d2d5c;
+  outline-offset: 4px;
+}
