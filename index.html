@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Memory Path Game</title>
+    <!-- Connect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="assets/js/script.js" defer></script>
 </head>
@@ -12,8 +17,14 @@
 <body>
   <!-- Header -->
   <header>
+
+    <div class="site-name">
+      <a href="index.html">Memory Path Game</a>
+    </div>
+
     <nav>
-      <ul>
+      <button type="button" aria-expanded="false" aria-controls="nav-menu" class="nav-toggle">  Menu  </button>
+      <ul id="nav-menu">
         <li><a href="#">Play</a></li>
         <li><a href="#">How to Play</a></li>
         <li><a href="#">Stats</a></li>
@@ -24,7 +35,7 @@
 
   <!--Main Section -->
   <main>
-    <h1>Memory Path Game</h1>
+    <h1 class="game-title">Memorise the path.</h1>
     <p>Watch the path light up, dot by dot. Then tap the dots back in the same order.</p>
 
     <div class="game-board">
