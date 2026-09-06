@@ -5,10 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Memory Path Game</title>
-    <!-- Connect to Google Fonts -->
+  <!-- Connect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="assets/js/script.js" defer></script>
@@ -22,8 +24,10 @@
       <a href="index.html">Memory Path Game</a>
     </div>
 
+    <button type="button" aria-expanded="false" aria-controls="nav-menu" class="nav-toggle"> Menu </button>
+
     <nav>
-      <button type="button" aria-expanded="false" aria-controls="nav-menu" class="nav-toggle">  Menu  </button>
+
       <ul id="nav-menu">
         <li><a href="#">Play</a></li>
         <li><a href="#">How to Play</a></li>
@@ -48,7 +52,26 @@
   </main>
 
   <!-- Footer -->
-  <footer></footer>
+  <footer class="game-footer">
+
+    <div class="footer-container">
+
+      <!-- Community -->
+      <div class="footer-col">
+
+        <ul>
+          <li><a href="https://github.com/MonB1986/Memory-Path-Game" target="_blank" rel="noopener">Github Repo</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Memory Path Game. All rights reserved.</p>
+    </div>
+
+  </footer>
 </body>
 
 </html>
