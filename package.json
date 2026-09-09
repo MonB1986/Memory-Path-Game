@@ -1,0 +1,27 @@
+{
+  "name": "memory-path-game",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000M\u0000e\u0000m\u0000o\u0000r\u0000y\u0000-\u0000P\u0000a\u0000t\u0000h\u0000-\u0000G\u0000a\u0000m\u0000e\u0000\r\u0000 \u0000\r\u0000 \u0000\r\u0000 \u0000\r\u0000 \u0000#\u0000#\u0000#\u0000 \u0000C\u0000r\u0000e\u0000d\u0000i\u0000t\u0000s\u0000\r\u0000 \u0000G\u0000a\u0000m\u0000e\u0000 \u0000w\u0000a\u0000s\u0000 \u0000i\u0000n\u0000s\u0000p\u0000i\u0000r\u0000e\u0000d\u0000 \u0000b\u0000y\u0000 \u0000B\u0000r\u0000a\u0000i\u0000n\u0000-\u0000a\u0000g\u0000e\u0000 \u0000p\u0000a\u0000t\u0000h\u0000 \u0000m\u0000e\u0000m\u0000o\u0000r\u0000y\u0000 \u0000f\u0000o\u0000r\u0000m\u0000a\u0000t\u0000:\u0000 \u0000h\u0000t\u0000t\u0000p\u0000s\u0000:\u0000/\u0000/\u0000b\u0000r\u0000a\u0000i\u0000n\u0000p\u0000a\u0000g\u0000e\u0000s\u0000.\u0000o\u0000r\u0000g\u0000/\u0000p\u0000a\u0000t\u0000h\u0000-\u0000m\u0000e\u0000m\u0000o\u0000r\u0000y\u0000/\u0000",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonB1986/Memory-Path-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MonB1986/Memory-Path-Game/issues"
+  },
+  "homepage": "https://github.com/MonB1986/Memory-Path-Game#readme",
+  "devDependencies": {
+    "jest": "^30.5.1",
+    "jest-environment-jsdom": "^30.5.1"
+  }
+}
