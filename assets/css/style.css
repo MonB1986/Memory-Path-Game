@@ -175,6 +175,14 @@ main p {
   cursor: pointer;
 }
 
+/* 
+  dot.classList.add('lit')
+  dot.classList.remove('lit')
+*/
+.dot.lit {
+  background-color: var(--dot-lit);
+}
+
 .dot:hover {
   transform: scale(1.08);
   box-shadow: 0 0 12px var(--btn-bg-hover);
