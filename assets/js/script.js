@@ -10,6 +10,8 @@ const gapTime = 250;
 
 // state
 let sequence = [];
+let playersTaps = [];
+let playersTurn = false;
 let roundNumber = 1;
 
 function startNewGame() {
@@ -33,7 +35,7 @@ function revealSequence(litTime, gapTime) {
           dotElements[litDotIndex].classList.remove("lit");
           // if we made it to the last dot AFTER dimming the dot...
           if (isLastDot) {
-            // startPlayerTurn()
+            startPlayerTurn();
           }
         }, litTime);
       },
@@ -42,7 +44,25 @@ function revealSequence(litTime, gapTime) {
   }
 }
 
+function startPlayerTurn() {
+  playersTaps = [];
+  playersTurn = true;
+  console.log("Your turn");
+}
+
 startButton.addEventListener("click", startNewGame);
+
+for (let i = 0; i < dotElements.length; i++) {
+  let currentDotElement = dotElements[i];
+  currentDotElement.addEventListener("click", function () {
+    if (!playersTurn) {
+      return;
+    }
+
+    playersTaps.push(i);
+    console.log(playersTaps);
+  });
+}
 
 navToggle.addEventListener("click", function () {
   const isOpen = navMenu.classList.toggle("is-open");
