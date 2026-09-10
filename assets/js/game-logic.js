@@ -15,8 +15,14 @@ function generateSequence(howMany, gridSize) {
   return sequence;
 }
 
+function isTapCorrect(sequence, position, tappedDot) {
+  return tappedDot === sequence[position];
+}
 
+function isRoundComplete(sequenceLength,tapsCount){
+  return sequenceLength === tapsCount;
+}
 
 if (typeof module !== "undefined") {
-  module.exports = { dotsForRound, generateSequence };
+  module.exports = { dotsForRound, generateSequence, isTapCorrect, isRoundComplete };
 }

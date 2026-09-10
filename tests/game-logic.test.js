@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const {dotsForRound,generateSequence} = require("../assets/js/game-logic");
+const {dotsForRound,generateSequence,isTapCorrect,isRoundComplete} = require("../assets/js/game-logic");
 
 
 
@@ -26,4 +26,32 @@ test("every value from generateSequence(4, 16) is between 0 and 15", () => {
     const myNumbers = generateSequence(4, 16);
     const allAreBetween0And15 = myNumbers.every(num => num >= 0 && num <= 15);
     expect(allAreBetween0And15).toBe(true);
+});
+
+
+test("given sequence is [4,3,2] player tapped 4 when they were in position 0 should be true", () => {
+    const sequence = [4,3,2];
+    expect(isTapCorrect(sequence,0,4)).toBe(true);
+});
+
+test("given sequence is [4,3,2] player tapped 3 when they were in position 0 should be false", () => {
+    const sequence = [4,3,2];
+    expect(isTapCorrect(sequence,0,3)).toBe(false);
+});
+
+test("given sequence is [4,3,2] player tapped 2 when they were in position 2 should be true", () => {
+    const sequence = [4,3,2];
+    expect(isTapCorrect(sequence,2,2)).toBe(true);
+});
+
+test("player tapped enough dots to have finished the round", () => {
+    const sequence = [4,3,2];
+    const taps = [4,3,2];
+    expect(isRoundComplete(sequence.length,taps.length)).toBe(true);
+});
+
+test("player hasn't tapped enough dots to have finished the round", () => {
+    const sequence = [4,3,2];
+    const taps = [4,3];
+    expect(isRoundComplete(sequence.length,taps.length)).toBe(false);
 });
