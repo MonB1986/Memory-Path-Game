@@ -27,7 +27,9 @@ test("generateSequence(4, 16) to return an array of length 4", () => {
 
 test("every value from generateSequence(4, 16) is between 0 and 15", () => {
   const myNumbers = generateSequence(4, 16);
-  const allAreBetween0And15 = myNumbers.every((num) => num >= 0 && num <= 15);
+  const allAreBetween0And15 = myNumbers.every((num) => {
+    return num >= 0 && num <= 15
+  });
   expect(allAreBetween0And15).toBe(true);
 });
 

@@ -6,31 +6,35 @@ const dotElements = document.querySelectorAll(".dot");
 
 //
 const gridSize = 16;
-const litTime = 400;
-const gapTime = 250;
 
 // state
+let litTime = 400;
+let gapTime = 250;
 let sequence = [];
 let playersTaps = [];
 let playersTurn = false;
 let roundNumber = 1;
+let playerStats = getPlayerStats()
 
 function startNewGame() {
   roundNumber = 1;
+  litTime = 400; 
   startRound();
 }
 
 function startRound() {
   sequence = generateSequence(dotsForRound(roundNumber), gridSize);
+  // TODO: litTime = litTimeForRound(litTime)
   console.log(sequence);
-  revealSequence(litTime, gapTime);
+  revealSequence();
 }
 
-function revealSequence(litTime, gapTime) {
+function revealSequence_v1() {
   //light up and dim one at a time
   for (let i = 0; i < sequence.length; i++) {
     let litDotIndex = sequence[i];
     let isLastDot = i === sequence.length - 1;
+    let whenToLightUp = i * (litTime + gapTime)
     // "outer timeout" to wait for the previous dots to finish
     setTimeout(
       () => {
@@ -43,10 +47,21 @@ function revealSequence(litTime, gapTime) {
             startPlayerTurn();
           }
         }, litTime);
-      },
-      i * (litTime + gapTime),
-    );
+      }, whenToLightUp);
   }
+}
+
+async function revealSequence() {
+  //light up and dim one at a time
+  for (let i = 0; i < sequence.length; i++) {
+    let litDotIndex = sequence[i];
+    dotElements[litDotIndex].classList.add("lit");
+    await wait(litTime)
+    dotElements[litDotIndex].classList.remove("lit");
+    await wait(gapTime)
+  }
+
+  startPlayerTurn()
 }
 
 function startPlayerTurn() {
@@ -71,9 +86,12 @@ for (let i = 0; i < dotElements.length; i++) {
 
     if (!wasCorrect) {
       playersTurn = false;
+      savePlayerStat(roundNumber)
       console.log("Wrong dot - Game Over");
       return;
     }
+
+    // Tap was correct
 
     console.log(position);
     console.log(playersTaps);
@@ -91,6 +109,7 @@ for (let i = 0; i < dotElements.length; i++) {
   });
 }
 
+//Toggles burger menu in mobile view
 navToggle.addEventListener("click", function () {
   const isOpen = navMenu.classList.toggle("is-open");
   navToggle.setAttribute("aria-expanded", isOpen);
