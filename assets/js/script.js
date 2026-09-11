@@ -4,6 +4,7 @@ const navMenu = document.querySelector("#nav-menu");
 const startButton = document.querySelector(".start-button");
 const dotElements = document.querySelectorAll(".dot");
 
+//
 const gridSize = 16;
 const litTime = 400;
 const gapTime = 250;
@@ -53,14 +54,31 @@ function startPlayerTurn() {
 startButton.addEventListener("click", startNewGame);
 
 for (let i = 0; i < dotElements.length; i++) {
-  let currentDotElement = dotElements[i];
+  const currentDotElement = dotElements[i];
   currentDotElement.addEventListener("click", function () {
     if (!playersTurn) {
       return;
     }
 
     playersTaps.push(i);
+    const position = playersTaps.length - 1;
+
+    const wasCorrect = isTapCorrect(sequence, position, i);
+
+    if (!wasCorrect) {
+      playersTurn = false;
+      console.log("Wrong dot - Game Over");
+      return;
+    }
+
+    console.log(position);
     console.log(playersTaps);
+
+    const roundComplete = isRoundComplete(sequence.length, playersTaps.length);
+    if (roundComplete) {
+      playersTurn = false;
+      console.log("Round complete - Well done!");
+    }
   });
 }
 
