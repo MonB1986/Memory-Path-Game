@@ -17,6 +17,10 @@ let roundNumber = 1;
 
 function startNewGame() {
   roundNumber = 1;
+  startRound();
+}
+
+function startRound() {
   sequence = generateSequence(dotsForRound(roundNumber), gridSize);
   console.log(sequence);
   revealSequence(litTime, gapTime);
@@ -78,6 +82,11 @@ for (let i = 0; i < dotElements.length; i++) {
     if (roundComplete) {
       playersTurn = false;
       console.log("Round complete - Well done!");
+      roundNumber++;
+
+      setTimeout(() => {
+        startRound();
+      }, 2000);
     }
   });
 }
