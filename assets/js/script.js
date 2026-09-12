@@ -17,6 +17,7 @@ let roundNumber = 1;
 let playerStats = getPlayerStats()
 
 function startNewGame() {
+  startButton.disabled = true;
   roundNumber = 1;
   litTime = 400; 
   startRound();
@@ -29,27 +30,6 @@ function startRound() {
   revealSequence();
 }
 
-function revealSequence_v1() {
-  //light up and dim one at a time
-  for (let i = 0; i < sequence.length; i++) {
-    let litDotIndex = sequence[i];
-    let isLastDot = i === sequence.length - 1;
-    let whenToLightUp = i * (litTime + gapTime)
-    // "outer timeout" to wait for the previous dots to finish
-    setTimeout(
-      () => {
-        dotElements[litDotIndex].classList.add("lit");
-        // "inner timeout" to hide after the reveal duration
-        setTimeout(() => {
-          dotElements[litDotIndex].classList.remove("lit");
-          // if we made it to the last dot AFTER dimming the dot...
-          if (isLastDot) {
-            startPlayerTurn();
-          }
-        }, litTime);
-      }, whenToLightUp);
-  }
-}
 
 async function revealSequence() {
   //light up and dim one at a time
@@ -70,6 +50,19 @@ function startPlayerTurn() {
   console.log("Your turn");
 }
 
+function getPlayerStats() {
+  const ls = localStorage.getItem('player-statistics')
+  if (ls === null) return {}
+  return JSON.parse(ls)
+}
+
+function savePlayerStat(roundReached) {
+  const timestamp = new Date().toString()
+  // playerStats at the key of timestamp = {...}
+  playerStats[timestamp] = { roundReached: roundReached }
+  localStorage.setItem('player-statistics', JSON.stringify(playerStats))
+}
+
 startButton.addEventListener("click", startNewGame);
 
 for (let i = 0; i < dotElements.length; i++) {
@@ -88,6 +81,7 @@ for (let i = 0; i < dotElements.length; i++) {
       playersTurn = false;
       savePlayerStat(roundNumber)
       console.log("Wrong dot - Game Over");
+      startButton.disabled = false;
       return;
     }
 
