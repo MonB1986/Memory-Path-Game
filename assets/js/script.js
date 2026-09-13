@@ -15,10 +15,12 @@ let playersTaps = [];
 let playersTurn = false;
 let roundNumber = 1;
 let playerStats = getPlayerStats()
+let gameStartTime = 0;
 
 function startNewGame() {
   startButton.disabled = true;
   roundNumber = 1;
+  gameStartTime = Date.now();
   litTime = 400; 
   startRound();
 }
@@ -26,7 +28,7 @@ function startNewGame() {
 function startRound() {
   sequence = generateSequence(dotsForRound(roundNumber), gridSize);
   // TODO: litTime = litTimeForRound(litTime)
-  console.log(sequence);
+  console.log(sequence);//Temp
   revealSequence();
 }
 
@@ -52,15 +54,27 @@ function startPlayerTurn() {
 
 function getPlayerStats() {
   const ls = localStorage.getItem('player-statistics')
-  if (ls === null) return {}
+  if (ls === null) return []
   return JSON.parse(ls)
 }
 
 function savePlayerStat(roundReached) {
-  const timestamp = new Date().toString()
-  // playerStats at the key of timestamp = {...}
-  playerStats[timestamp] = { roundReached: roundReached }
-  localStorage.setItem('player-statistics', JSON.stringify(playerStats))
+  //Game Duration
+  const milliseconds = Date.now() - gameStartTime;
+  const seconds = milliseconds/1000;
+  const durationSeconds = Math.round(seconds);
+  console.log(durationSeconds);//Temp
+  //Record object
+  const record = {
+    date: new Date().toISOString(),
+    roundReached,
+    durationSeconds,
+  };
+  console.log(record); //Temp
+  //Adding record to playerStats array
+  playerStats.push(record);
+  //Saving the array to localStorage
+  localStorage.setItem("player-statistics", JSON.stringify(playerStats));
 }
 
 startButton.addEventListener("click", startNewGame);

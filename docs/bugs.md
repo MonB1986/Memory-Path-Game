@@ -9,3 +9,17 @@ Pressing Start during the reveal begins a second sequence while the first is sti
 **Cause:**
 **Fix:**
 **Date:**
+
+## savePlayerStats localStorage bug
+
+**Symptom**
+savePlayerStats still contained earlier object
+
+**Cause**
+savePlayerStat still contained the earlier object-based code; playerStats[timestamp] = ... attaches a named property to an array, and JSON.stringify silently drops those, so an empty array was being saved. 
+
+**Fix**
+Fixed by deleting the superseded lines.
+
+**Date:** 
+13/09/206

@@ -12,3 +12,5 @@
 - Disabled the Start button rather than a state flag, because the browser stops firing click events on a disabled button therefore not allowing the player to click on it whilst sequence is being revealed.
 
 - wait() decicion left in game logic because it actually pauses the game until the next action is fired. 
+
+savePlayerStat reads gameStartTime from module state rather than taking it as a parameter, because the function already writes to localStorage and so isn't unit-testable either way. The pure logic is tested separately.
