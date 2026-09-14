@@ -80,3 +80,19 @@ test("sortStats sorts by roundReached descending", () => {
   const sorted =  sortStats(records, "roundReached", "descending");
   expect(sorted.map(r => r.roundReached)).toEqual([10, 4, 1]);
 });
+
+test("sortStats sorts by dates ascending", () => {
+  const records = [
+    {date:"1986-09-23"},
+    {date:"2001-03-12"}, 
+    {date:"1886-12-11"}
+  ];
+  const sorted =  sortStats(records, "date", "ascending");
+  expect(sorted.map(r => r.date)).toEqual([ "1886-12-11","1986-09-23", "2001-03-12"]);
+});
+
+test("sortStats empty array test to show what first time users see", () => {
+  const records = [];
+  const sorted =  sortStats([], "roundReached", "ascending");
+  expect(sorted.map(r => r.roundReached)).toEqual([]);
+});
