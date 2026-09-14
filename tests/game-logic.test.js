@@ -70,3 +70,13 @@ test("sortStats sorts by roundReached ascending", () => {
   const sorted =  sortStats(records, "roundReached", "ascending");
   expect(sorted.map(r => r.roundReached)).toEqual([1, 4, 10]);
 });
+
+test("sortStats sorts by roundReached descending", () => {
+  const records = [
+    {roundReached:1},
+    {roundReached:4}, 
+    {roundReached:10}
+  ];
+  const sorted =  sortStats(records, "roundReached", "descending");
+  expect(sorted.map(r => r.roundReached)).toEqual([10, 4, 1]);
+});

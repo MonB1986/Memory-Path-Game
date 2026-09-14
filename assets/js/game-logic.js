@@ -28,10 +28,17 @@ function sortStats (records, field, direction) {
   // making a copy of records
   const recordCopy = records.slice();
   // calling .sort() on the copy, handing it my referee
+
+
   recordCopy.sort((a, b) => {
-  if (a[field] < b[field]) return -1;
-  if (a[field] > b[field]) return 1;
-  return 0;
+  let answer = 0;
+
+  if (a[field] < b[field]) {answer = -1};
+  if (a[field] > b[field]) {answer = 1};
+  
+  if(direction === "descending") {answer *= -1}
+  
+  return answer;
 });
 
 return recordCopy;
