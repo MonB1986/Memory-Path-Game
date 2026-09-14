@@ -7,6 +7,7 @@ const {
   generateSequence,
   isTapCorrect,
   isRoundComplete,
+  sortStats,
 } = require("../assets/js/game-logic");
 
 test("expect number of dots for round one to be 3", () => {
@@ -58,4 +59,14 @@ test("player hasn't tapped enough dots to have finished the round", () => {
   const sequence = [4, 3, 2];
   const taps = [4, 3];
   expect(isRoundComplete(sequence.length, taps.length)).toBe(false);
+});
+
+test("sortStats sorts by roundReached ascending", () => {
+  const records = [
+    {roundReached:1},
+    {roundReached:4}, 
+    {roundReached:10}
+  ];
+  const sorted =  sortStats(records, "roundReached", "ascending");
+  expect(sorted.map(r => r.roundReached)).toEqual([1, 4, 10]);
 });

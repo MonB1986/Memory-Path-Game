@@ -23,6 +23,21 @@ function isRoundComplete(sequenceLength, tapsCount) {
   return sequenceLength === tapsCount;
 }
 
+function sortStats (records, field, direction) {
+
+  // making a copy of records
+  const recordCopy = records.slice();
+  // calling .sort() on the copy, handing it my referee
+  recordCopy.sort((a, b) => {
+  if (a[field] < b[field]) return -1;
+  if (a[field] > b[field]) return 1;
+  return 0;
+});
+
+return recordCopy;
+  
+}
+
 /*
   allows you to call
   await wait(2000)
@@ -43,5 +58,6 @@ if (typeof module !== "undefined") {
     generateSequence,
     isTapCorrect,
     isRoundComplete,
+    sortStats
   };
 }
