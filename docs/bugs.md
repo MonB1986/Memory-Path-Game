@@ -29,4 +29,4 @@ Fixed by deleting the superseded lines.
 **Symptom** On How to Play, My Stats and About, the mobile menu button does nothing.
 
 **Cause** All pages load script.js, which calls .addEventListener on .start-button. That element only exists on the game page, so on the others it's null and the call throws, stopping the rest of the file, including the nav toggle wiring at the bottom.
-**Fix** ?
+**Fix** Split the files - put navigation menu in seperate file (nav.js)

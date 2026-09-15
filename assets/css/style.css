@@ -228,6 +228,11 @@ main p {
   outline: 3px solid var(--accent);
 }
 
+/* Stats Page */
+.stats-table-wrapper {
+  overflow-x: auto;
+}
+
 /*Media Queries*/
 
 @media (min-width: 768px) {
