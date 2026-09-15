@@ -1,6 +1,4 @@
 // dom
-const navToggle = document.querySelector(".nav-toggle");
-const navMenu = document.querySelector("#nav-menu");
 const startButton = document.querySelector(".start-button");
 const dotElements = document.querySelectorAll(".dot");
 
@@ -117,8 +115,3 @@ for (let i = 0; i < dotElements.length; i++) {
   });
 }
 
-//Toggles burger menu in mobile view
-navToggle.addEventListener("click", function () {
-  const isOpen = navMenu.classList.toggle("is-open");
-  navToggle.setAttribute("aria-expanded", isOpen);
-});
