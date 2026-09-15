@@ -233,6 +233,17 @@ main p {
   overflow-x: auto;
 }
 
+.hidden {
+  display: none;
+}
+
+#countdown {
+  width: 800px;
+  height: 15px;
+  background-color: orange;
+  border-radius: 5px;
+}
+
 /*Media Queries*/
 
 @media (min-width: 768px) {

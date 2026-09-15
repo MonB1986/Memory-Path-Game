@@ -16,6 +16,7 @@
 
   <script src="assets/js/game-logic.js" defer></script>
   <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/storage.js" defer></script>
   <script src="assets/js/stats.js" defer></script>
 </head>
 
@@ -46,7 +47,7 @@
     </h1>
 
     <div id="stats-empty">
-
+      <p>No rounds played yet - <a href="index.html">play your first game</a></p>
     </div>
 
     <div class="stats-table-wrapper">
@@ -54,16 +55,33 @@
         <thead>
           <tr>
             <th scope="col">Date</th>
-            <th scope="col">Round Reached</th>
-            <th scope="col">Dots</th>
             <th scope="col">Time</th>
+            <th scope="col">Round Reached</th>
           </tr>
         </thead>
 
         <tbody id="stats-body">
           <!-- JavaScript rows  -->
+           <!-- 
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+           -->
         </tbody>
       </table>
+
+      <select id="order-select">
+        <option value="ascending">ascending</option>
+        <option value="descending">descending</option>
+      </select>
+      <select name="" id="field-select">
+        <option value="date">date</option>
+        <option value="roundReached">round reached</option>
+      </select>
+
     </div>
 
   </main>
