@@ -31,17 +31,17 @@ function sortStats (records, field, direction) {
 
 
   recordCopy.sort((a, b) => {
-  let answer = 0;
+    let answer = 0;
 
-  if (a[field] < b[field]) {answer = -1};
-  if (a[field] > b[field]) {answer = 1};
-  
-  if(direction === "descending") {answer *= -1}
-  
-  return answer;
-});
+    if (a[field] < b[field]) {answer = -1};
+    if (a[field] > b[field]) {answer = 1};
+    
+    if(direction === "descending") {answer *= -1}
+    
+    return answer;
+  });
 
-return recordCopy;
+  return recordCopy;
   
 }
 
