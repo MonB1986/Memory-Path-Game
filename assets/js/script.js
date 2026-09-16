@@ -99,8 +99,8 @@ function endGame() {
 }
 
 function runOutOfTime() {
-  // TODO: end the turn like a wrong tap does —
-  // save the stat, re-enable Start, hide the countdown
+  endGame();
+  console.log("Out of time - Game Over")
 }
 
 startButton.addEventListener("click", startNewGame);
