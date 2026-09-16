@@ -2,6 +2,7 @@
 const startButton = document.querySelector(".start-button");
 const dotElements = document.querySelectorAll(".dot");
 const countdownDiv = document.querySelector("#countdown");
+const roundDisplay = document.querySelector("#round-display");
 
 //
 const gridSize = 16;
@@ -27,6 +28,9 @@ function startNewGame() {
 }
 
 function startRound() {
+  roundDisplay.textContent = `
+    Round : ${roundNumber}
+  `
   sequence = generateSequence(dotsForRound(roundNumber), gridSize);
   // TODO: litTime = litTimeForRound(litTime)
   console.log(sequence); //Temp
@@ -52,18 +56,18 @@ function startPlayerTurn() {
   console.log("Your turn");
 
   // show the countdown
-  countdownDiv.style.width = '500px'
-  countdownDiv.style.transition = `all ${playersTurnDuration}ms linear`
-  countdownDiv.classList.remove('hidden')
-  
+  countdownDiv.style.width = "500px";
+  countdownDiv.style.transition = `all ${playersTurnDuration}ms linear`;
+  countdownDiv.classList.remove("hidden");
+
   // on the next DOM paint, set the width to 0. the transition has been applied so it will take some times
   setTimeout(() => {
-    countdownDiv.style.width = '0px'
-  }, 10)
+    countdownDiv.style.width = "0px";
+  }, 10);
 
   // start timeout for player running out of time
   playersTurnTimeout = setTimeout(() => {
-    runOutOfTime()
+    runOutOfTime();
   }, playersTurnDuration);
 }
 
@@ -86,6 +90,14 @@ function savePlayerStat(roundReached) {
   localStorage.setItem("player-statistics", JSON.stringify(playerStats));
 }
 
+function endGame() {
+  playersTurn = false;
+  savePlayerStat(roundNumber);
+  startButton.disabled = false;
+  countdownDiv.classList.add("hidden");
+  clearTimeout(playersTurnTimeout);
+}
+
 function runOutOfTime() {
   // TODO: end the turn like a wrong tap does —
   // save the stat, re-enable Start, hide the countdown
@@ -106,10 +118,8 @@ for (let i = 0; i < dotElements.length; i++) {
     const wasCorrect = isTapCorrect(sequence, position, i);
 
     if (!wasCorrect) {
-      playersTurn = false;
-      savePlayerStat(roundNumber);
+      endGame();
       console.log("Wrong dot - Game Over");
-      startButton.disabled = false;
       return;
     }
 
@@ -125,8 +135,8 @@ for (let i = 0; i < dotElements.length; i++) {
       roundNumber++;
 
       // hide the countdown and stop the timeout
-      countdownDiv.classList.add('hidden')
-      clearTimeout(playersTurnTimeout)
+      countdownDiv.classList.add("hidden");
+      clearTimeout(playersTurnTimeout);
 
       setTimeout(() => {
         startRound();
