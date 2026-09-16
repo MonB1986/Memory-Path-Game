@@ -175,6 +175,49 @@ main p {
   cursor: pointer;
 }
 
+main a {
+  color: var(--link);
+}
+
+main a:hover {
+  color: var(--link-hover)
+}
+
+main a:focus-visible {
+  outline-offset: 4px;
+  border-radius: 8px;
+  outline: 3px solid var(--accent);
+}
+
+.start-button {
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 10%;
+}
+
+.start-button:hover {
+  background-color: var(--btn-bg-hover);
+}
+
+.start-button:focus-visible{
+    outline-offset: 4px;
+  border-radius: 8px;
+  outline: 3px solid var(--accent);
+}
+
+#countdown {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* 
   dot.classList.add('lit')
   dot.classList.remove('lit')
@@ -235,6 +278,24 @@ main p {
 
 .hidden {
   display: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px solid var(--dot-idle);
+}
+
+th {
+  border-bottom: 2px solid var(--text-muted);
 }
 
 #countdown {
