@@ -3,6 +3,7 @@ const startButton = document.querySelector(".start-button");
 const dotElements = document.querySelectorAll(".dot");
 const countdownDiv = document.querySelector("#countdown");
 const roundDisplay = document.querySelector("#round-display");
+const statusMessage = document.querySelector("#status-message");
 
 //
 const gridSize = 16;
@@ -20,6 +21,7 @@ let playerStats = getPlayerStats();
 let gameStartTime = 0;
 
 function startNewGame() {
+  statusMessage.textContent = `Memorise the sequence of dots`
   startButton.disabled = true;
   roundNumber = 1;
   gameStartTime = Date.now();
@@ -53,6 +55,7 @@ async function revealSequence() {
 function startPlayerTurn() {
   playersTaps = [];
   playersTurn = true;
+  statusMessage.textContent = `Your turn`
   console.log("Your turn");
 
   // show the countdown
@@ -100,6 +103,7 @@ function endGame() {
 
 function runOutOfTime() {
   endGame();
+  statusMessage.textContent = `Out of time — game over`
   console.log("Out of time - Game Over")
 }
 
@@ -119,6 +123,7 @@ for (let i = 0; i < dotElements.length; i++) {
 
     if (!wasCorrect) {
       endGame();
+      statusMessage.textContent = `Wrong dot - Game Over`
       console.log("Wrong dot - Game Over");
       return;
     }
@@ -131,6 +136,7 @@ for (let i = 0; i < dotElements.length; i++) {
     const roundComplete = isRoundComplete(sequence.length, playersTaps.length);
     if (roundComplete) {
       playersTurn = false;
+      statusMessage.textContent = `Round complete - Well done!`
       console.log("Round complete - Well done!");
       roundNumber++;
 
