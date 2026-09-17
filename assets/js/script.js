@@ -59,7 +59,7 @@ function startPlayerTurn() {
   console.log("Your turn");
 
   // show the countdown
-  countdownDiv.style.width = "500px";
+  countdownDiv.style.width = "70%";
   countdownDiv.style.transition = `all ${playersTurnDuration}ms linear`;
   countdownDiv.classList.remove("hidden");
 
