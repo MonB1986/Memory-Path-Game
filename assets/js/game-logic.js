@@ -23,26 +23,29 @@ function isRoundComplete(sequenceLength, tapsCount) {
   return sequenceLength === tapsCount;
 }
 
-function sortStats (records, field, direction) {
-
+function sortStats(records, field, direction) {
   // making a copy of records
   const recordCopy = records.slice();
   // calling .sort() on the copy, handing it my referee
 
-
   recordCopy.sort((a, b) => {
     let answer = 0;
 
-    if (a[field] < b[field]) {answer = -1};
-    if (a[field] > b[field]) {answer = 1};
-    
-    if(direction === "descending") {answer *= -1}
-    
+    if (a[field] < b[field]) {
+      answer = -1;
+    }
+    if (a[field] > b[field]) {
+      answer = 1;
+    }
+
+    if (direction === "descending") {
+      answer *= -1;
+    }
+
     return answer;
   });
 
   return recordCopy;
-  
 }
 
 /*
@@ -51,13 +54,24 @@ function sortStats (records, field, direction) {
 */
 async function wait(milliseconds) {
   return new Promise((resolve) => {
-    setTimeout(resolve, milliseconds)
-  })
+    setTimeout(resolve, milliseconds);
+  });
 }
 
+function formatDate(isoString) {
+  const dateObj = new Date(isoString);
+  const year = dateObj.getFullYear();
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+  const day = dateObj.getDate().toString().padStart(2, "0");
+  const date = `${year}-${month}-${day}`;
+  return date;
+}
 
-
-
+function formatTime(isoStringTime) {
+  const dateObj = new Date(isoStringTime)
+  const time = `${dateObj.getHours()}:${dateObj.getMinutes().toString().padStart(2, "0")}`;
+  return time;
+}
 
 if (typeof module !== "undefined") {
   module.exports = {
@@ -65,6 +79,8 @@ if (typeof module !== "undefined") {
     generateSequence,
     isTapCorrect,
     isRoundComplete,
-    sortStats
+    sortStats,
+    formatDate,
+    formatTime,
   };
 }

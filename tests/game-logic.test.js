@@ -8,6 +8,8 @@ const {
   isTapCorrect,
   isRoundComplete,
   sortStats,
+  formatDate,
+  formatTime,
 } = require("../assets/js/game-logic");
 
 test("expect number of dots for round one to be 3", () => {
@@ -95,4 +97,26 @@ test("sortStats empty array test to show what first time users see", () => {
   const records = [];
   const sorted =  sortStats([], "roundReached", "ascending");
   expect(sorted.map(r => r.roundReached)).toEqual([]);
+});
+
+
+test("formatDate turns an ISO string into YYYY-MM-DD", () => {
+  const isoString = "2026-09-16T12:00:00.000Z";
+  expect(formatDate(isoString)).toBe( "2026-09-16" );
+});
+
+test("formatDate turns an ISO string into YYYY-MM-DD", () => {
+  const isoString = "2026-09-03T12:00:00.000Z";
+  expect(formatDate(isoString)).toBe( "2026-09-03" );
+});
+
+
+test("formatTime turns an ISO string into 00:00 format", () => {
+  const isoStringTime = "2026-09-03T12:00:00.000Z";
+  expect(formatTime(isoStringTime)).toBe( "13:00" );
+});
+
+test("formatTime turns an ISO string into 00:00 format with a single digit minute", () => {
+  const isoStringTime = "2026-09-03T12:05:00.000Z";
+  expect(formatTime(isoStringTime)).toBe( "13:05" );
 });

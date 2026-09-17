@@ -26,10 +26,8 @@ function renderStats() {
 
     for (let i=0; i<sortedStats.length; i++){
         const stat = sortedStats[i];
-        const dateObj = new Date(stat.date)
-        const month = (dateObj.getMonth()+1).toString().padStart(2, '0')
-        const date = `${dateObj.getFullYear()}-${month}-${dateObj.getDate()}`
-        const time = `${dateObj.getHours()}:${dateObj.getMinutes().toString().padStart(2, '0')}`
+        const date = formatDate(stat.date);
+        const time = formatTime(stat.date);
     
         statsBody.innerHTML += `
             <tr>

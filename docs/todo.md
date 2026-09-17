@@ -7,6 +7,7 @@
 - Dots are clickable even when sequence is still being shown.
 - Finish runOutOfTime() — currently the countdown expires and nothing happens
 - Clear playersTurnTimeout and hide the countdown on game over (only done on round complete)
+- Fix start button in mobile view
 
 ## Polish if time (16–17 Sep)
 - "Give up" button to end a game cleanly
