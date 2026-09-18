@@ -43,10 +43,10 @@ async function revealSequence() {
   //light up and dim one at a time
   for (let i = 0; i < sequence.length; i++) {
     let litDotIndex = sequence[i];
-    dotElements[litDotIndex].classList.add("lit");
-    await wait(litTime);
-    dotElements[litDotIndex].classList.remove("lit");
-    await wait(gapTime);
+    dotElements[litDotIndex].classList.add("lit"); // light up the dot
+    await wait(litTime); // pause for litTime
+    dotElements[litDotIndex].classList.remove("lit"); // dim the dot
+    await wait(gapTime); // pause for gapTime before going to next loop-iteration
   }
 
   startPlayerTurn();
@@ -60,7 +60,8 @@ function startPlayerTurn() {
 
   // show the countdown
   countdownDiv.style.width = "70%";
-  countdownDiv.style.transition = `all ${playersTurnDuration}ms linear`;
+  // css transitions look like this:          transition: width 650ms linear;
+  countdownDiv.style.transition = `width ${playersTurnDuration}ms linear`;
   countdownDiv.classList.remove("hidden");
 
   // on the next DOM paint, set the width to 0. the transition has been applied so it will take some times
@@ -112,6 +113,7 @@ startButton.addEventListener("click", startNewGame);
 for (let i = 0; i < dotElements.length; i++) {
   const currentDotElement = dotElements[i];
   currentDotElement.addEventListener("click", function () {
+    // if it's not the player's turn, do nothing
     if (!playersTurn) {
       return;
     }
@@ -150,3 +152,5 @@ for (let i = 0; i < dotElements.length; i++) {
     }
   });
 }
+
+

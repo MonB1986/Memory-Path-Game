@@ -16,7 +16,7 @@ function renderStats() {
     const sortedStats = sortStats(stats, field, direction)
     // console.log({stats, sortedStats})
 
-    if(stats.length === 0){
+    if(sortedStats.length === 0){
         tableWrapper.classList.add("hidden")
         emptyStateDiv.classList.remove("hidden")
     } else {

@@ -23,12 +23,17 @@ function isRoundComplete(sequenceLength, tapsCount) {
   return sequenceLength === tapsCount;
 }
 
-function sortStats(records, field, direction) {
+/**
+ * @param {Array} stats
+ * @param {'date' | 'roundReached'} field
+ * @param {'descending' | 'ascending'} direction
+ */
+function sortStats(stats, field, direction) {
   // making a copy of records
-  const recordCopy = records.slice();
+  const statsCopy = stats.slice();
   // calling .sort() on the copy, handing it my referee
 
-  recordCopy.sort((a, b) => {
+  statsCopy.sort((a, b) => {
     let answer = 0;
 
     if (a[field] < b[field]) {
@@ -45,16 +50,21 @@ function sortStats(records, field, direction) {
     return answer;
   });
 
-  return recordCopy;
+  return statsCopy;
 }
 
 /*
   allows you to call
   await wait(2000)
 */
-async function wait(milliseconds) {
+function wait(milliseconds) {
+  // returning a promise will allow this function to be "awaited"
   return new Promise((resolve) => {
-    setTimeout(resolve, milliseconds);
+    // set a timeout for the milliseconds passed in
+    setTimeout(() => {
+      // resolve the promise (the "awaiting" stops when resolve is called)
+      resolve();
+    }, milliseconds);
   });
 }
 
@@ -68,7 +78,7 @@ function formatDate(isoString) {
 }
 
 function formatTime(isoStringTime) {
-  const dateObj = new Date(isoStringTime)
+  const dateObj = new Date(isoStringTime);
   const time = `${dateObj.getHours()}:${dateObj.getMinutes().toString().padStart(2, "0")}`;
   return time;
 }
