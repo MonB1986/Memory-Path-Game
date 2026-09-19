@@ -1,14 +1,5 @@
 # Bugs found and fixed
 
-## 1. Short name for the bug
-
-**Symptom:**
-
-Pressing Start during the reveal begins a second sequence while the first is still running; both write to the same sequence variable, so the dots shown and the dots expected fall out of step.
-
-**Cause:**
-**Fix:**
-**Date:**
 
 ## savePlayerStats localStorage 
 
@@ -29,10 +20,11 @@ Fixed by deleting the superseded lines.
 **Symptom** On How to Play, My Stats and About, the mobile menu button does nothing.
 
 **Cause** All pages load script.js, which calls .addEventListener on .start-button. That element only exists on the game page, so on the others it's null and the call throws, stopping the rest of the file, including the nav toggle wiring at the bottom.
+
 **Fix** Split the files - put navigation menu in seperate file (nav.js)
 
 
-## 1. Countdown bar error
+## Countdown bar error
 
 **Symptom:**
 countdown bar appears in game 1 but never again after a loss.
@@ -45,5 +37,16 @@ hide the countdown and clear its timeout in endGame().
 
 **Date:**
 16/09/2026
+
+
+## Mobile view sart button display error
+
+**Symptom**: At 320px the Start button's label was clipped to "Star".
+
+**Cause**: width: 10% on .start-button — fine on a wide screen, 32px on a 320px one.
+
+**Fix**: Removed the fixed percentage width; the button is now sized by its padding and content.
+
+**Date**: 19/09/2026
 
 
