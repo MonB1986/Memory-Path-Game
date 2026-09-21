@@ -21,7 +21,7 @@ let playerStats = getPlayerStats();
 let gameStartTime = 0;
 
 function startNewGame() {
-  statusMessage.textContent = `Memorise the sequence of dots`
+  statusMessage.textContent = `Memorise the sequence of dots`;
   startButton.disabled = true;
   roundNumber = 1;
   gameStartTime = Date.now();
@@ -32,10 +32,9 @@ function startNewGame() {
 function startRound() {
   roundDisplay.textContent = `
     Round : ${roundNumber}
-  `
+  `;
   sequence = generateSequence(dotsForRound(roundNumber), gridSize);
   // TODO: litTime = litTimeForRound(litTime)
-  console.log(sequence); //Temp
   revealSequence();
 }
 
@@ -55,8 +54,7 @@ async function revealSequence() {
 function startPlayerTurn() {
   playersTaps = [];
   playersTurn = true;
-  statusMessage.textContent = `Your turn`
-  console.log("Your turn");
+  statusMessage.textContent = `Your turn`;
 
   // show the countdown
   countdownDiv.style.width = "70%";
@@ -80,14 +78,14 @@ function savePlayerStat(roundReached) {
   const milliseconds = Date.now() - gameStartTime;
   const seconds = milliseconds / 1000;
   const durationSeconds = Math.round(seconds);
-  console.log(durationSeconds); //Temp
+
   //Record object
   const record = {
     date: new Date().toISOString(),
     roundReached,
     durationSeconds,
   };
-  console.log(record); //Temp
+
   //Adding record to playerStats array
   playerStats.push(record);
   //Saving the array to localStorage
@@ -104,8 +102,7 @@ function endGame() {
 
 function runOutOfTime() {
   endGame();
-  statusMessage.textContent = `Out of time — game over`
-  console.log("Out of time - Game Over")
+  statusMessage.textContent = `Out of time — game over`;
 }
 
 startButton.addEventListener("click", startNewGame);
@@ -125,21 +122,18 @@ for (let i = 0; i < dotElements.length; i++) {
 
     if (!wasCorrect) {
       endGame();
-      statusMessage.textContent = `Wrong dot - Game Over`
-      console.log("Wrong dot - Game Over");
+      statusMessage.textContent = `Wrong dot - Game Over`;
+
       return;
     }
 
     // Tap was correct
 
-    console.log(position);
-    console.log(playersTaps);
-
     const roundComplete = isRoundComplete(sequence.length, playersTaps.length);
     if (roundComplete) {
       playersTurn = false;
-      statusMessage.textContent = `Round complete - Well done!`
-      console.log("Round complete - Well done!");
+      statusMessage.textContent = `Round complete - Well done!`;
+
       roundNumber++;
 
       // hide the countdown and stop the timeout
@@ -152,5 +146,3 @@ for (let i = 0; i < dotElements.length; i++) {
     }
   });
 }
-
-
