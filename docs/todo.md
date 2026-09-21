@@ -20,4 +20,7 @@
 savePlayerStat reads gameStartTime from module state rather than taking it as a parameter, because the function already writes to localStorage and so isn't unit-testable either way. The pure logic is tested separately.
 
 
+## JS testing
+five files linted, only storage.js needed fixing, loop warning reviewed and dismissed because of let
 
+JSHint flagged functions declared within a loop; reviewed and not applicable, as the loop uses let so each iteration has its own binding
