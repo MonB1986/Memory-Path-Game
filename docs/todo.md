@@ -1,26 +1,27 @@
 # To do
 
-## Before submission
-- Remove all // TEMP console.logs
-- Re-check disabled button styling in Firefox, Edge, Safari
-- Wireframes show numbered dots — mechanic changed, update or note it
-- Dots are clickable even when sequence is still being shown.
-- Finish runOutOfTime() — currently the countdown expires and nothing happens
-- Clear playersTurnTimeout and hide the countdown on game over (only done on round complete)
-- Fix start button in mobile view
+## Completed
 
-## Polish if time (16–17 Sep)
-- "Give up" button to end a game cleanly
+- Removed all temporary `console.log()` statements.
+- Updated the wireframe notes after the numbered-dot mechanic changed.
+- Confirmed the dots cannot be clicked while the sequence is being shown.
+- Finished `runOutOfTime()` so the game ends correctly when the timer expires.
+- Cleared `playersTurnTimeout` and hid the countdown on game over.
+- Fixed the Start button display in mobile view.
+
+## Future improvements
+
+- Re-check disabled button styling in Firefox and Safari.
+- Add a "Give Up" button to end a game cleanly.
 
 ## Decisions made
-- Disabled the Start button rather than a state flag, because the browser stops firing click events on a disabled button therefore not allowing the player to click on it whilst sequence is being revealed.
 
-- wait() decicion left in game logic because it actually pauses the game until the next action is fired. 
+- Disabled the Start button rather than using a state flag, because the browser stops firing click events on a disabled button, preventing the player from starting another game while the sequence is being revealed.
+- Left `wait()` in the game logic because it pauses the game until the next action is triggered.
+- `savePlayerStats()` reads `gameStartTime` from module state rather than taking it as a parameter, because the function already writes to `localStorage` and is not unit-testable either way. The pure logic is tested separately.
 
-savePlayerStat reads gameStartTime from module state rather than taking it as a parameter, because the function already writes to localStorage and so isn't unit-testable either way. The pure logic is tested separately.
+## JS Testing
 
-
-## JS testing
-five files linted, only storage.js needed fixing, loop warning reviewed and dismissed because of let
-
-JSHint flagged functions declared within a loop; reviewed and not applicable, as the loop uses let so each iteration has its own binding
+- All five JavaScript files were linted.
+- Only `storage.js` needed fixing.
+- The JSHint loop warning was reviewed and dismissed because the loop uses `let`, so each iteration has its own binding.
