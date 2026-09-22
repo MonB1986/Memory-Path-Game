@@ -1,52 +1,75 @@
-# Bugs found and fixed
+# Bugs Found and Fixed
 
-
-## savePlayerStats localStorage 
+## Bug 1 – `savePlayerStats()` Local Storage
 
 **Symptom**
-savePlayerStats still contained earlier object
+
+`savePlayerStats()` still contained the earlier object.
 
 **Cause**
-savePlayerStat still contained the earlier object-based code; playerStats[timestamp] = ... attaches a named property to an array, and JSON.stringify silently drops those, so an empty array was being saved. 
+
+`savePlayerStats()` still contained the earlier object-based code. `playerStats[timestamp] = ...` attached a named property to an array, and `JSON.stringify()` silently dropped those properties, so an empty array was being saved.
 
 **Fix**
-Fixed by deleting the superseded lines.
 
-**Date:** 
-13/09/206
+Deleted the superseded lines.
 
-## Thrown error 
+**Date**
 
-**Symptom** On How to Play, My Stats and About, the mobile menu button does nothing.
+13/09/2026
 
-**Cause** All pages load script.js, which calls .addEventListener on .start-button. That element only exists on the game page, so on the others it's null and the call throws, stopping the rest of the file, including the nav toggle wiring at the bottom.
+---
 
-**Fix** Split the files - put navigation menu in seperate file (nav.js)
+## Bug 2 – Thrown Error on Live Pages
 
+**Symptom**
 
-## Countdown bar error
+On the How to Play, Stats and About pages, the mobile menu button did nothing.
 
-**Symptom:**
-countdown bar appears in game 1 but never again after a loss.
+**Cause**
 
-**Cause:**
-the inline transition persists on the element. Resetting the width to full only happens instantly while the element is display: none; the game-over path never hid it, so the reset animated instead of jumping.
+All pages loaded `script.js`, which called `.addEventListener()` on `.start-button`. That element only existed on the game page, so on the other pages it was `null`. The error stopped the rest of the file from running, including the navigation code.
 
-**Fix:**
-hide the countdown and clear its timeout in endGame().
+**Fix**
 
-**Date:**
+Split the JavaScript into separate files and moved the navigation into `nav.js`.
+
+---
+
+## Bug 3 – Countdown Bar Error
+
+**Symptom**
+
+The countdown bar appeared during the first game but never appeared again after losing.
+
+**Cause**
+
+The inline transition stayed on the element. Resetting the width only happened instantly while the element was `display: none`, but the game-over path never hid it, so the reset animated instead of jumping.
+
+**Fix**
+
+Hid the countdown and cleared its timeout inside `endGame()`.
+
+**Date**
+
 16/09/2026
 
+---
 
-## Mobile view sart button display error
+## Bug 4 – Mobile Start Button Display Error
 
-**Symptom**: At 320px the Start button's label was clipped to "Star".
+**Symptom**
 
-**Cause**: width: 10% on .start-button — fine on a wide screen, 32px on a 320px one.
+At **320px**, the Start button label was clipped to "Star".
 
-**Fix**: Removed the fixed percentage width; the button is now sized by its padding and content.
+**Cause**
 
-**Date**: 19/09/2026
+`width: 10%` on `.start-button` worked on wider screens but became only 32px wide at 320px.
 
+**Fix**
 
+Removed the fixed percentage width so the button is now sized by its content and padding.
+
+**Date**
+
+19/09/2026
